@@ -1,0 +1,13 @@
+# Removed because the user should have to download their own connectdome:
+# (SEE README.md)
+flybrain/
+
+# build directories:
+build/
+
+# CMake artifacts:
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake

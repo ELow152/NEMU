@@ -178,6 +178,7 @@ static uint32_t typemap_get_or_add(TypeMap *m, const char *key) {
     return nn->id;
 }
 
+#ifdef SERIALIZER
 /* ---------- Utilities ---------- */
 static char *trim_inplace(char *s) {
     if (!s) return s;
@@ -684,7 +685,6 @@ static void serialize_nemu(const char *path, Cluster *clusters, size_t n_cluster
 }
 
 /* ---------- Pipeline loaders (unchanged except synapse behavior) ---------- */
-
 static NeuronTable *load_neurons_from_cell_stats(const char *path) {
     gzFile f = gzopen(path, "rb");
     if (!f) { fprintf(stderr, "cannot open %s: %s\n", path, strerror(errno)); exit(1); }
@@ -907,7 +907,7 @@ static Cluster *build_clusters_from_table(NeuronTable *table, size_t *out_n_clus
     return clusters;
 }
 
-#ifdef SERIALIZE_MAIN
+
 /* ---------- Main ---------- */
 int main(int argc, char **argv) {
     const char *out = "nemu/serialized.nemu";
